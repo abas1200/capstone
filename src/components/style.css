@@ -17,7 +17,7 @@
 
 .container{
    
-    width: 50%;
+    width: 60%;
     margin: auto;
 }
 
@@ -55,13 +55,17 @@
 .navbar a{
     color: #444;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease-in-out;
+    font-weight: 600;
 }
 
 .navbar a:hover{
     color: #117964;
     
+}
+
+.navbar .active{
+    color: #105648;
+    font-weight: 700;
 }
 
 @media (max-width: 768px){

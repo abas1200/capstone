@@ -5,22 +5,22 @@ export const HEADER_MENU_ITEMS = [
   },
   {
     title: "About",
-    url: "/about",
+    url: "about",
   },
   {
     title: "Menu",
-    url: "#",
+    url: "menu",
   },
   {
     title: "Reservations",
-    url: "#",
+    url: "reservations",
   },
   {
     title: "Order Online",
-    url: "#",
+    url: "order",
   },
   {
     title: "Login",
-    url: "#",
+    url: "login",
   },
 ];
