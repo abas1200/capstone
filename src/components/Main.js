@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { HomePage, BookingPage ,About } from "./pages";
+import { HomePage, BookingPage ,About } from "../pages";
 
 const Main = () => {
   return (
