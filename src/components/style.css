@@ -24,7 +24,7 @@
 .navbar{
     box-shadow: 0px 5px 10px 0px #aaa;
     width: 100%;
-    background: #fff;
+    background: #EDEFEE;
     color: #000;
     opacity: 0.85;
     z-index: 100;
@@ -49,7 +49,7 @@
 .menu-items li{
     list-style: none;
     margin-left: 1.5rem;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
 }
 
 .navbar a{
@@ -59,12 +59,12 @@
 }
 
 .navbar a:hover{
-    color: #117964;
+    color: #495E57;
     
 }
 
 .navbar .active{
-    color: #105648;
+    color: #495E57;
     font-weight: 700;
 }
 

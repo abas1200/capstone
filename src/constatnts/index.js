@@ -16,7 +16,7 @@ export const HEADER_MENU_ITEMS = [
     url: "reservations",
   },
   {
-    title: "Order",
+    title: "Order Online",
     url: "order",
   },
   {
