@@ -3,7 +3,7 @@ import { Flex, Container, Text, Box, Image, Button } from "@chakra-ui/react";
 
 const slide = {
   position: "absolute",
-  paddingTop: "50px",
+  paddingTop: "75px",
   paddingLeft:"200px"
 };
 
@@ -11,7 +11,7 @@ const Chicago = () => {
   return (
     <>
       <Flex gap="100" width="100%" bg="#495E57">
-        <Box paddingTop="2" paddingLeft="20%" maxW="40%">
+        <Box paddingTop="2" paddingLeft="21%" maxW="40%">
           <Text
             fontSize="28px"
             fontWeight="700"
