@@ -1,38 +1,49 @@
 import React from "react";
-import { Flex, Container, Text, Box, Image } from "@chakra-ui/react";
+import { Flex, Container, Text, Box, Image, Button } from "@chakra-ui/react";
+
+const slide = {
+  position: "absolute",
+  paddingTop: "50px",
+  paddingLeft:"200px"
+};
 
 const Chicago = () => {
   return (
-    <Flex marginLeft="20%" gap="30">
-      <Container paddingTop="20" maxW="40%">
-        <Text
-          fontSize="28px"
-          fontWeight="700"
-          fontFamily="serif"
-          color="#F4CE14"
-        >
-          Little Lemon
-        </Text>
-        <Text fontSize="20px" fontFamily="serif" color="white">
-          Chicago
-        </Text>
-        <Box paddingTop="10">
+    <>
+      <Flex gap="100" width="100%" bg="#495E57">
+        <Box paddingTop="2" paddingLeft="20%" maxW="40%">
+          <Text
+            fontSize="28px"
+            fontWeight="700"
+            fontFamily="serif"
+            color="#F4CE14"
+          >
+            Little Lemon
+          </Text>
+          <Text fontSize="20px" fontFamily="serif" color="white">
+            Chicago
+          </Text>
+
           <Text fontSize="18px" color="white">
             we are a family owned Mediterranean restaurant, focused on
             traditional recipes served with a modern twist.
           </Text>
+          <br />
+          <Button marginBottom="10" colorScheme="yellow">
+            Reserve a Table
+          </Button>
         </Box>
-      </Container>
-      <Box paddingTop="40" maxW="md">
+      </Flex>
+      <Box style={slide} maxW="md">
         <Image
           borderRadius="10"
           boxSize="250"
           objectFit="cover"
-          src={"../restauranfood.jpg"}
+          src={"../images/restauranfood.jpg"}
           alt="restaurant food"
         />
       </Box>
-    </Flex>
+    </>
   );
 };
 export default Chicago;
