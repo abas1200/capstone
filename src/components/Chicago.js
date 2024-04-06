@@ -3,15 +3,15 @@ import { Flex, Container, Text, Box, Image, Button } from "@chakra-ui/react";
 
 const slide = {
   position: "absolute",
-  paddingTop: "75px",
-  paddingLeft:"200px"
+  paddingTop: "2%",
+  paddingLeft:"250px"
 };
 
 const Chicago = () => {
   return (
     <>
-      <Flex gap="100" width="100%" bg="#495E57">
-        <Box paddingTop="2" paddingLeft="21%" maxW="40%">
+      <Flex gap="150" width="70%" bg="#495E57">
+        <Box paddingTop="2" paddingLeft="10%" maxW="40%">
           <Text
             fontSize="28px"
             fontWeight="700"
@@ -34,7 +34,7 @@ const Chicago = () => {
           </Button>
         </Box>
       </Flex>
-      <Box style={slide} maxW="md">
+      <Box style={slide} maxW="50%">
         <Image
           borderRadius="10"
           boxSize="250"
