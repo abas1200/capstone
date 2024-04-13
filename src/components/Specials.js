@@ -46,9 +46,9 @@ const Specials = () => {
                 alt="menu item"
               />
             </Box>
-            <Box margin={3} height={100} >
+            <Box margin={3} height={150}>
               <VStack spacing={2}>
-                <HStack spacing={8}>
+                <HStack>
                   <Text fontSize="16px" fontWeight="700" fontFamily="serif">
                     {item.title}
                   </Text>
@@ -58,12 +58,18 @@ const Specials = () => {
                 </HStack>
                 <Text fontSize="12px" color="#333333">
                   {item.text}
-                </Text> 
+                </Text>
               </VStack>
             </Box>
-            <Text fontSize="16px" margin={3} fontWeight="700" fontFamily="serif">
-                   Order a delivery
-            </Text>
+            <Box margin={3}>
+              <VStack spacing={2}>
+                <HStack>
+                  <Text fontSize="16px" fontWeight="700" fontFamily="serif">
+                    Order a delivery
+                  </Text>
+                </HStack>
+              </VStack>
+            </Box>
           </GridItem>
         ))}
       </Grid>
