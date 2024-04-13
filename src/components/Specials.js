@@ -7,13 +7,16 @@ import {
   Flex,
   Box,
   Button,
+  Image,
+  HStack,
+  VStack,
 } from "@chakra-ui/react";
+import { MENU_SPECIAL } from "../constatnts";
 
 const Specials = () => {
   return (
     <Center>
       <Grid
-        h="100%"
         width="70%"
         templateRows="repeat(4, 1fr)"
         templateColumns="repeat(3, 1fr)"
@@ -21,21 +24,48 @@ const Specials = () => {
       >
         <GridItem rowSpan={1} colSpan={3}>
           <Flex paddingLeft="5" paddingTop="10" gap="45%" width="80%">
-            <Box >
+            <Box>
               <Text fontSize="30px" fontWeight="700" fontFamily="serif">
                 This weeks specials!
               </Text>
             </Box>
-            <Box  >
-              <Button colorScheme="yellow">
-                Online Menu
-              </Button>
+            <Box>
+              <Button colorScheme="yellow">Online Menu</Button>
             </Box>
           </Flex>
         </GridItem>
-        <GridItem rowSpan={3} colSpan={1} bg="papayawhip" />
-        <GridItem rowSpan={3} colSpan={1} bg="papayawhip" />
-        <GridItem rowSpan={3} colSpan={1} bg="papayawhip" />
+
+        {MENU_SPECIAL.map((item) => (
+          <GridItem borderRadius="10" rowSpan={3} colSpan={1} bg="#EDEFEE">
+            <Box borderRadius="10">
+              <Image
+                width="100%"
+                height="200"
+                objectFit="cover"
+                src={`../images${item.image}`}
+                alt="menu item"
+              />
+            </Box>
+            <Box margin={3} height={100} >
+              <VStack spacing={2}>
+                <HStack spacing={8}>
+                  <Text fontSize="16px" fontWeight="700" fontFamily="serif">
+                    {item.title}
+                  </Text>
+                  <Text fontSize="16px" fontWeight="700" color="#EE9972">
+                    ${item.price}
+                  </Text>
+                </HStack>
+                <Text fontSize="12px" color="#333333">
+                  {item.text}
+                </Text> 
+              </VStack>
+            </Box>
+            <Text fontSize="16px" margin={3} fontWeight="700" fontFamily="serif">
+                   Order a delivery
+            </Text>
+          </GridItem>
+        ))}
       </Grid>
     </Center>
   );
