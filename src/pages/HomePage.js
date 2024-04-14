@@ -7,11 +7,9 @@ export const HomePage = () => {
   return (
     <>
       <Center>
-       <Chicago /> 
-       
-        
+        <Chicago />
       </Center>
-       <Specials /> 
-     </>
+      <Specials />
+    </>
   );
 };
