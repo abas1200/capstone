@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import {
   Card,
   CardBody,
@@ -81,16 +81,23 @@ const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
 
 export const BookingPage = () => {
   const InitializeTimes = ["18:00", "19:00", "20:00", "21:00", "22:00"];
+  const [selectedDate, setSelectedDate] = useState("");
 
   const updateTimes = (state, action) => {
     if (action.type === "update") {
-      //console.log(action.selectedDate);
+      setSelectedDate(action.selectedDate);
       return state;
     }
     return state;
   };
 
   const [availableTimes, dispatch] = useReducer(updateTimes, InitializeTimes);
+
+  useEffect(() => {
+   // const response = fetchAPI(selectedDate);
+   // availableTimes = response.data;
+
+  }, [selectedDate]);
 
   const handleSubmit = (formData) => {
     console.log(formData);
@@ -100,7 +107,7 @@ export const BookingPage = () => {
     <VStack marginTop="10">
       <Card>
         <CardHeader>
-        <Heading size='md'>Book Now</Heading>
+          <Heading size="md">Book Now</Heading>
         </CardHeader>
         <CardBody>
           <BookingForm
