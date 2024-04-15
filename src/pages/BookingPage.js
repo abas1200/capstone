@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Card,
   CardBody,
@@ -82,6 +83,7 @@ const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
 export const BookingPage = () => {
   const InitializeTimes = ["18:00", "19:00", "20:00", "21:00", "22:00"];
   const [selectedDate, setSelectedDate] = useState("");
+  const navigate = useNavigate();
 
   const updateTimes = (state, action) => {
     if (action.type === "update") {
@@ -94,13 +96,19 @@ export const BookingPage = () => {
   const [availableTimes, dispatch] = useReducer(updateTimes, InitializeTimes);
 
   useEffect(() => {
-   // const response = fetchAPI(selectedDate);
-   // availableTimes = response.data;
-
+    // const availableTimes = async (date) => {
+    //   const response = await fetchAPI(selectedDate);
+    //   return response?.data;
+    // };
   }, [selectedDate]);
 
-  const handleSubmit = (formData) => {
+  const handleSubmit = async (formData) => {
+    // const response = await submitAPI(formData);
+    // if(response.data)
+    // {
+    // }
     console.log(formData);
+    navigate("/ConfirmedBooking");
   };
 
   return (
