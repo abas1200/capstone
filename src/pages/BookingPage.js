@@ -23,9 +23,9 @@ export const BookingPage = () => {
 
   return (
     <VStack marginTop="10">
-      <Card maxW="500">
+      <Card>
         <CardBody>
-          <form>
+          <form className="form-style">
             <label htmlFor="res-date">Choose date:</label>
             <input
               type="date"
@@ -74,7 +74,7 @@ export const BookingPage = () => {
             </select>
             <br />
             <br />
-            <Button marginLeft="5" colorScheme="yellow" onClick={handleSubmit}>
+            <Button colorScheme="yellow" onClick={handleSubmit}>
               Make Your reservation
             </Button>
           </form>
