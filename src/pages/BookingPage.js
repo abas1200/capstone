@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
 import { Card, CardBody, Button, VStack } from "@chakra-ui/react";
 import "./style.css";
 
-export const BookingPage = () => {
+const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
   const [formData, setFormData] = useState({
     resDate: "",
     resTime: "",
@@ -15,9 +15,77 @@ export const BookingPage = () => {
       ...prev,
       [event.target.name]: event.target.value,
     }));
+    if (onChangeDate && event.target.name === "resDate") onChangeDate(event);
   }
 
-  const handleSubmit = () => {
+  return (
+    <form className="form-style">
+      <label htmlFor="res-date">Choose date:</label>
+      <input
+        type="date"
+        id="res-date"
+        name="resDate"
+        value={formData.resDate}
+        onChange={handleChange}
+      />
+      <br />
+      <label htmlFor="res-time">Choose time:</label>
+      <select
+        id="res-time "
+        name="resTime"
+        value={formData.resTime}
+        onChange={handleChange}
+      >
+        {availableTimes?.map((t, index) => (
+          <option key={index}>{t}</option>
+        ))}
+      </select>
+      <br />
+      <label htmlFor="guests">Number of guests:</label>
+      <input
+        type="number"
+        placeholder="1"
+        min="1"
+        max="10"
+        id="guests"
+        name="guests"
+        value={formData.guests}
+        onChange={handleChange}
+      />
+      <br />
+      <label htmlFor="occasion">Occasion:</label>
+      <select
+        id="occasion"
+        name="occasion"
+        value={formData.occasion}
+        onChange={handleChange}
+      >
+        <option>Birthday</option>
+        <option>Anniversary</option>
+      </select>
+      <br />
+      <br />
+      <Button colorScheme="yellow" onClick={(e) => onSubmit(formData)}>
+        Make Your reservation
+      </Button>
+    </form>
+  );
+};
+
+export const BookingPage = () => {
+  const InitializeTimes = ["18:00", "19:00", "20:00", "21:00", "22:00"];
+
+  const updateTimes = (state, action) => {
+    if (action.type === "update") {
+      //console.log(action.selectedDate);
+      return state;
+    }
+    return state;
+  };
+
+  const [availableTimes, dispatch] = useReducer(updateTimes, InitializeTimes);
+
+  const handleSubmit = (formData) => {
     console.log(formData);
   };
 
@@ -25,59 +93,13 @@ export const BookingPage = () => {
     <VStack marginTop="10">
       <Card>
         <CardBody>
-          <form className="form-style">
-            <label htmlFor="res-date">Choose date:</label>
-            <input
-              type="date"
-              id="res-date"
-              name="resDate"
-              value={formData.resDate}
-              onChange={handleChange}
-            />
-            <br />
-            <label htmlFor="res-time">Choose time:</label>
-            <select
-              id="res-time "
-              name="resTime"
-              value={formData.resTime}
-              onChange={handleChange}
-            >
-              <option>17:00</option>
-              <option>18:00</option>
-              <option>19:00</option>
-              <option>20:00</option>
-              <option>21:00</option>
-              <option>22:00</option>
-            </select>
-            <br />
-            <label htmlFor="guests">Number of guests:</label>
-            <input
-              type="number"
-              placeholder="1"
-              min="1"
-              max="10"
-              id="guests"
-              name="guests"
-              value={formData.guests}
-              onChange={handleChange}
-            />
-            <br />
-            <label htmlFor="occasion">Occasion:</label>
-            <select
-              id="occasion"
-              name="occasion"
-              value={formData.occasion}
-              onChange={handleChange}
-            >
-              <option>Birthday</option>
-              <option>Anniversary</option>
-            </select>
-            <br />
-            <br />
-            <Button colorScheme="yellow" onClick={handleSubmit}>
-              Make Your reservation
-            </Button>
-          </form>
+          <BookingForm
+            availableTimes={availableTimes}
+            onChangeDate={(e) =>
+              dispatch({ type: "update", selectedDate: e.target.value })
+            }
+            onSubmit={handleSubmit}
+          />
         </CardBody>
       </Card>
     </VStack>
