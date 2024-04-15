@@ -1,40 +1,85 @@
 import React, { useState } from "react";
-import { Card,CardBody, Button, VStack } from "@chakra-ui/react";
+import { Card, CardBody, Button, VStack } from "@chakra-ui/react";
 import "./style.css";
 
 export const BookingPage = () => {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({
+    resDate: "",
+    resTime: "",
+    guests: "",
+    occasion: "",
+  });
 
-  const handleSubmit = () => {};
+  function handleChange(event) {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  }
 
-  return ( <VStack marginTop="10"> 
-    <Card maxW="500"><CardBody>
-     
-      <form onSubmit={handleSubmit()}>
-        <label htmlFor="res-date">Choose date:</label>
-        <input type="date" id="res-date" /><br/>
-        <label htmlFor="res-time">Choose time:</label>
-        <input type="date" id="res-date" /><br/>
-        <label htmlFor="res-time">Choose time:</label>
-        <select id="res-time ">
-          <option>17:00</option>
-          <option>18:00</option>
-          <option>19:00</option>
-          <option>20:00</option>
-          <option>21:00</option>
-          <option>22:00</option>
-        </select><br/>
-        <label htmlFor="guests">Number of guests:</label>
-        <input type="number" placeholder="1" min="1" max="10" id="guests" /><br/>
-        <label htmlFor="occasion">Occasion:</label>
-        <select id="occasion">
-          <option>Birthday</option>
-          <option>Anniversary</option>
-        </select><br/><br/>
-        <Button colorScheme="yellow">Make Your reservation</Button>
-         
-      </form>
-      </CardBody>
-      </Card></VStack>
+  const handleSubmit = () => {
+    console.log(formData);
+  };
+
+  return (
+    <VStack marginTop="10">
+      <Card maxW="500">
+        <CardBody>
+          <form>
+            <label htmlFor="res-date">Choose date:</label>
+            <input
+              type="date"
+              id="res-date"
+              name="resDate"
+              value={formData.resDate}
+              onChange={handleChange}
+            />
+            <br />
+            <label htmlFor="res-time">Choose time:</label>
+            <select
+              id="res-time "
+              name="resTime"
+              value={formData.resTime}
+              onChange={handleChange}
+            >
+              <option>17:00</option>
+              <option>18:00</option>
+              <option>19:00</option>
+              <option>20:00</option>
+              <option>21:00</option>
+              <option>22:00</option>
+            </select>
+            <br />
+            <label htmlFor="guests">Number of guests:</label>
+            <input
+              type="number"
+              placeholder="1"
+              min="1"
+              max="10"
+              id="guests"
+              name="guests"
+              value={formData.guests}
+              onChange={handleChange}
+            />
+            <br />
+            <label htmlFor="occasion">Occasion:</label>
+            <select
+              id="occasion"
+              name="occasion"
+              value={formData.occasion}
+              onChange={handleChange}
+            >
+              <option>Birthday</option>
+              <option>Anniversary</option>
+            </select>
+            <br />
+            <br />
+            <Button marginLeft="5" colorScheme="yellow" onClick={handleSubmit}>
+              Make Your reservation
+            </Button>
+          </form>
+        </CardBody>
+      </Card>
+    </VStack>
   );
 };
