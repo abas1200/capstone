@@ -1,5 +1,12 @@
 import React, { useState, useReducer } from "react";
-import { Card, CardBody, Button, VStack } from "@chakra-ui/react";
+import {
+  Card,
+  CardBody,
+  Button,
+  VStack,
+  CardHeader,
+  Heading,
+} from "@chakra-ui/react";
 import "./style.css";
 
 const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
@@ -92,6 +99,9 @@ export const BookingPage = () => {
   return (
     <VStack marginTop="10">
       <Card>
+        <CardHeader>
+        <Heading size='md'>Book Now</Heading>
+        </CardHeader>
         <CardBody>
           <BookingForm
             availableTimes={availableTimes}

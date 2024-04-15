@@ -35,8 +35,8 @@ const Specials = () => {
           </Flex>
         </GridItem>
 
-        {MENU_SPECIAL.map((item) => (
-          <GridItem borderRadius="10" rowSpan={3} colSpan={1} bg="#EDEFEE">
+        {MENU_SPECIAL.map((item,index) => (
+          <GridItem key={index} borderRadius="10" rowSpan={3} colSpan={1} bg="#EDEFEE">
             <Box borderRadius="10">
               <Image
                 width="100%"
