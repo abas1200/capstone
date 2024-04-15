@@ -1,13 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Flex, Container, Text, Box, Image, Button } from "@chakra-ui/react";
 
 const slide = {
   position: "absolute",
   paddingTop: "2%",
-  paddingLeft:"250px"
+  paddingLeft: "250px",
 };
 
 const Chicago = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <Flex gap="150" width="70%" bg="#495E57">
@@ -29,7 +32,11 @@ const Chicago = () => {
             traditional recipes served with a modern twist.
           </Text>
           <br />
-          <Button marginBottom="10" colorScheme="yellow">
+          <Button
+            marginBottom="10"
+            colorScheme="yellow"
+            onClick={() => navigate("/booking")}
+          >
             Reserve a Table
           </Button>
         </Box>
