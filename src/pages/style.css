@@ -79,5 +79,10 @@ select{
 	-webkit-box-shadow:none;
 }
 .form-style .required{
-	color:red;
+	font-weight: bold;
 }
+
+.form-style .required:after {
+    content:" *Required";
+    color: red;
+  }
