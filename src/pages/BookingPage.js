@@ -58,6 +58,7 @@ const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
           <option key={index}>{t}</option>
         ))}
       </select>
+     {formData.resDate && availableTimes?.length == 0 && <label style={{color:"red"}}>No Free Slot!</label>}
       <br />
       <label htmlFor="guests">Number of guests:</label>
       <input
