@@ -102,8 +102,7 @@ export const BookingPage = () => {
   const updateTimes = (state, action) => {
     if (action.type === "update") {
       setSelectedDate(action.selectedDate);
-      const t = getAvailableTimes(action.selectedDate);
-      return t;
+      return getAvailableTimes(action.selectedDate);
     }
     return state;
   };

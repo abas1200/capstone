@@ -13,7 +13,7 @@ export const HEADER_MENU_ITEMS = [
   },
   {
     title: "Reservations",
-    url: "reservations",
+    url: "booking",
   },
   {
     title: "Order Online",
