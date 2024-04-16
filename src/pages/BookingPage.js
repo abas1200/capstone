@@ -13,9 +13,9 @@ import "./style.css";
 const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
   const [formData, setFormData] = useState({
     resDate: "",
-    resTime: "",
+    resTime: "18:00",
     guests: "",
-    occasion: "",
+    occasion: "Birthday",
   });
 
   function handleChange(event) {
@@ -73,7 +73,11 @@ const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
       </select>
       <br />
       <br />
-      <Button colorScheme="yellow" onClick={(e) => onSubmit(formData)}>
+      <Button
+        colorScheme="yellow"
+        onClick={(e) => onSubmit(formData)}
+        isDisabled={Object.values(formData).filter((v) => v == "").length > 0}
+      >
         Make Your reservation
       </Button>
     </form>
