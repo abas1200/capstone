@@ -9,14 +9,24 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import "./style.css";
+import { getAvailableTimes, setReservedTime } from "../stores/store";
 
 const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
   const [formData, setFormData] = useState({
     resDate: "",
-    resTime: "18:00",
+    resTime: "",
     guests: "",
     occasion: "Birthday",
   });
+
+  useEffect(() => {
+    if (availableTimes?.length) {
+      setFormData((prev) => ({
+        ...prev,
+        resTime: availableTimes[0],
+      }));
+    }
+  }, [availableTimes]);
 
   function handleChange(event) {
     setFormData((prev) => ({
@@ -85,19 +95,19 @@ const BookingForm = ({ availableTimes, onChangeDate, onSubmit }) => {
 };
 
 export const BookingPage = () => {
-  const InitializeTimes = ["18:00", "19:00", "20:00", "21:00", "22:00"];
   const [selectedDate, setSelectedDate] = useState("");
   const navigate = useNavigate();
 
   const updateTimes = (state, action) => {
     if (action.type === "update") {
       setSelectedDate(action.selectedDate);
-      return state;
+      const t = getAvailableTimes(action.selectedDate);
+      return t;
     }
     return state;
   };
 
-  const [availableTimes, dispatch] = useReducer(updateTimes, InitializeTimes);
+  const [availableTimes, dispatch] = useReducer(updateTimes, []);
 
   useEffect(() => {
     // const availableTimes = async (date) => {
@@ -111,7 +121,7 @@ export const BookingPage = () => {
     // if(response.data)
     // {
     // }
-    console.log(formData);
+    setReservedTime(formData.resDate, formData.resTime);
     navigate("/ConfirmedBooking");
   };
 
