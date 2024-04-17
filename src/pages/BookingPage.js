@@ -9,38 +9,41 @@ import {
   Heading,
 } from "@chakra-ui/react";
 import "./style.css";
-import { getAvailableTimes, setReservedTime } from "../stores/store";
-import { BookingForm } from "../components/BookingForm";
 
+import { BookingForm } from "../components/BookingForm";
+import { fetchAPI, submitAPI } from "../services/api";
 
 export const BookingPage = () => {
-  const [selectedDate, setSelectedDate] = useState("");
   const navigate = useNavigate();
 
   const updateTimes = (state, action) => {
-    if (action.type === "update") {
-      setSelectedDate(action.selectedDate);
-      return getAvailableTimes(action.selectedDate);
-    }
+    if (action.type === "UpdateDate")
+      return { ...state, selectedDate: action.selectedDate };
+    else if (action.type === "UpdateTime")
+      return { ...state, availableTimes: action.availableTimes };
+
     return state;
   };
 
-  const [availableTimes, dispatch] = useReducer(updateTimes, []);
+  const [state, dispatch] = useReducer(updateTimes, {
+    selectedDate: "",
+    availableTimes: [],
+  });
 
   useEffect(() => {
-    // const availableTimes = async (date) => {
-    //   const response = await fetchAPI(selectedDate);
-    //   return response?.data;
-    // };
-  }, [selectedDate]);
+    const response = fetchAPI(state.selectedDate);
 
-  const handleSubmit = async (formData) => {
-    // const response = await submitAPI(formData);
-    // if(response.data)
-    // {
-    // }
-    setReservedTime(formData.resDate, formData.resTime);
-    navigate("/ConfirmedBooking");
+    dispatch({
+      type: "UpdateTime",
+      availableTimes: response,
+    });
+  }, [state.selectedDate]);
+
+  const handleSubmit = (formData) => {
+    const response = submitAPI(formData);
+    if (response) {
+      navigate("/ConfirmedBooking");
+    }
   };
 
   return (
@@ -51,9 +54,9 @@ export const BookingPage = () => {
         </CardHeader>
         <CardBody>
           <BookingForm
-            availableTimes={availableTimes}
+            availableTimes={state.availableTimes}
             onChangeDate={(e) =>
-              dispatch({ type: "update", selectedDate: e.target.value })
+              dispatch({ type: "UpdateDate", selectedDate: e.target.value })
             }
             onSubmit={handleSubmit}
           />
